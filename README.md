@@ -1,16 +1,19 @@
-# vscode-env-exemplify README
+# VS Code Environment Exemplify Extension
 
-This is the README for your extension "vscode-env-exemplify". After writing up a brief description, we recommend including the following sections.
+This extension automatically creates a copy of an `.env` file as an `.env.example` file and updates it whenever changes are saved to the reference env. file.. This is particularly useful for keeping a sample environment configuration file up-to-date in projects where environment variables are used.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Monitors `.env` files for changes
+- Automatically creates or updates a copy of the `.env` file with the name `.env.example`
 
-For example if there is an image subfolder under your extension project workspace:
+<br>
 
-\!\[feature X\]\(images/feature-x.png\)
+---
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<br>
+
+# TODO: FILL IN THE FOLLOWING BELOW
 
 ## Requirements
 
