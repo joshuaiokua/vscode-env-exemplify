@@ -12,7 +12,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # VS Code settings
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
 
 # TypeScript cache
 *.tsbuildinfo
