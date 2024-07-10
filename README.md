@@ -4,8 +4,11 @@ This extension automatically creates a copy of an `.env` file as an `.env.exampl
 
 ## Features
 
-- Monitors `.env` files for changes
-- Automatically creates or updates a copy of the `.env` file with the name `.env.example`
+- Monitors `.env` files for changes.
+- Automatically creates or updates a copy of the `.env` file with the name `.env.example` in the same directory whenever changes are saved to the `.env` file.
+- The `.env.example` file is created with all the keys from the `.env` file and empty values.
+- The `.env.example` file is updated with the keys from the `.env` file whenever changes are saved to the `.env` file.
+- The `.env.example` file is created only if the `.env` file is explicitly saved.
 
 <br>
 
