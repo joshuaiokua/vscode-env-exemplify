@@ -1,28 +1,15 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log('Extension "vscode-env-exemplify" is now active!');
+	console.log('Congratulations, your extension "env-exemplify" is now active!');
 
-    let disposable = vscode.workspace.onDidSaveTextDocument((document) => {
-        // Check if the saved file is an .env file
-        if (document.fileName.endsWith('.env')) {
-            const filePath = document.fileName;
-            const copyPath = filePath + '.example';
+	// Register a command that runs a test 
+	// Note: The command is defined in package.json
+	const testHelloWorld = vscode.commands.registerCommand('env-exemplify.testHelloWorld', () => {
+		vscode.window.showInformationMessage('Hello World from env-exemplify!');
+	});
 
-            // Copy the .env file to .env.example
-            fs.copyFile(filePath, copyPath, (err) => {
-                if (err) {
-                    vscode.window.showErrorMessage(`Failed to create a copy of ${filePath}: ${err.message}`);
-                } else {
-                    vscode.window.showInformationMessage(`Copied ${filePath} to ${copyPath}`);
-                }
-            });
-        }
-    });
-
-    context.subscriptions.push(disposable);
+	context.subscriptions.push(testHelloWorld);
 }
 
 export function deactivate() {}
