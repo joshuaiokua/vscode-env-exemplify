@@ -1,20 +1,20 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",  /* CommonJS modules for Node.js compatibility */
-		"target": "ES2022",  /* Latest ECMAScript target */
+		"module": "commonjs",
+		"target": "ES2022",
 		"lib": [
 			"ES2022"
 		],
-		"sourceMap": true,  /* Generate source maps for debugging */
-		"rootDir": "src",  /* Root directory for source files */
-		"outDir": "out",  /* Output directory for compiled files */
-		"strict": true,  /* Enable all strict type-checking options */
-		"esModuleInterop": true,  /* Emit __importStar and __importDefault helpers for runtime */
-		"skipLibCheck": true,  /* Skip type checking of declaration files */
+		"sourceMap": true,
+		"rootDir": "src",
+		"outDir": "out",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true
 		/* Additional Checks */
-		// "noImplicitReturns": true,  /* Report error when not all code paths in function return a value. */
-		// "noFallthroughCasesInSwitch": true,  /* Report errors for fallthrough cases in switch statement. */
-		// "noUnusedParameters": true  /* Report errors on unused parameters. */
+		// "noImplicitReturns": true,
+		// "noFallthroughCasesInSwitch": true,
+		// "noUnusedParameters": true
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "out"]
