@@ -1,60 +1,72 @@
 import * as vscode from "vscode";
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import * as path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log(`Congratulations, your extension "env-exemplify" is now active!`);
+  console.log('Congratulations, your extension "env-exemplify" is now active!');
 
   // Helper function to get the .env.example file path
   const getEnvExamplePath = (filePath: string): string => {
     const dir = path.dirname(filePath);
+    console.log("Directory:", dir);
     return path.join(dir, ".env.example");
   };
 
   // Update Functionality
-  const updateEnvExample = (filePath: string) => {
+  const updateEnvExample = async (filePath: string) => {
     const envExamplePath = getEnvExamplePath(filePath);
+    console.log(`Updating env.example file: ${envExamplePath}`);
 
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        console.error("Error reading .env file:", err);
-        return;
-      }
-
+    try {
+      const data = await fs.readFile(filePath, "utf8");
       const envVars = data
         .split("\n")
         .filter((line) => line && !line.startsWith("#"))
         .map((line) => line.split("=")[0])
         .join("\n");
 
-      fs.writeFile(envExamplePath, envVars, "utf8", (err) => {
-        if (err) {
-          console.error("Error writing env.example file:", err);
-        } else {
-          console.log("env.example file updated successfully");
-        }
-      });
-    });
+      await fs.writeFile(envExamplePath, envVars, "utf8");
+      vscode.window.showInformationMessage(
+        "env.example file updated successfully",
+      );
+    } catch (err) {
+      console.error("Error reading or writing env.example file:", err);
+      vscode.window.showErrorMessage("Failed to update env.example file");
+    }
   };
 
   // Delete Functionality
-  const deleteEnvExample = (filePath: string) => {
+  const deleteEnvExample = async (filePath: string) => {
     const envExamplePath = getEnvExamplePath(filePath);
 
-    fs.unlink(envExamplePath, (err) => {
-      if (err) {
-        console.error("Error deleting env.example file:", err);
-      } else {
-        console.log("env.example file deleted successfully");
-      }
-    });
+    try {
+      await fs.unlink(envExamplePath);
+      vscode.window.showInformationMessage(
+        "env.example file deleted successfully",
+      );
+    } catch (err) {
+      console.error("Error deleting env.example file:", err);
+      vscode.window.showErrorMessage("Failed to delete env.example file");
+    }
   };
 
   // Watch for changes in the .env file
   const watcher = vscode.workspace.createFileSystemWatcher("**/.env");
-  watcher.onDidChange((uri) => updateEnvExample(uri.fsPath));
-  watcher.onDidCreate((uri) => updateEnvExample(uri.fsPath));
-  watcher.onDidDelete((uri) => deleteEnvExample(uri.fsPath));
+
+  watcher.onDidChange(async (uri) => {
+    console.log("File changed:", uri.fsPath);
+    await updateEnvExample(uri.fsPath);
+  });
+
+  watcher.onDidCreate(async (uri) => {
+    console.log("File created:", uri.fsPath);
+    await updateEnvExample(uri.fsPath);
+  });
+
+  watcher.onDidDelete(async (uri) => {
+    console.log("File deleted:", uri.fsPath);
+    await deleteEnvExample(uri.fsPath);
+  });
 
   context.subscriptions.push(watcher);
 }
