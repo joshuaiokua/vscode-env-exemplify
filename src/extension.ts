@@ -5,7 +5,6 @@ import * as path from "path";
 // Helper function to get the .env.example file path
 const getEnvExamplePath = (filePath: string): string => {
   const dir = path.dirname(filePath);
-  console.log("Directory:", dir);
   return path.join(dir, ".env.example");
 };
 
@@ -57,7 +56,6 @@ export function activate(context: vscode.ExtensionContext) {
   const watcher = vscode.workspace.createFileSystemWatcher("**/.env");
 
   watcher.onDidChange(async (uri) => {
-    console.log("File changed:", uri.fsPath);
     try {
       await updateEnvExample(uri.fsPath);
     } catch (err) {
@@ -66,7 +64,6 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   watcher.onDidCreate(async (uri) => {
-    console.log("File created:", uri.fsPath);
     try {
       await updateEnvExample(uri.fsPath);
     } catch (err) {
@@ -75,7 +72,6 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   watcher.onDidDelete(async (uri) => {
-    console.log("File deleted:", uri.fsPath);
     try {
       await deleteEnvExample(uri.fsPath);
     } catch (err) {
