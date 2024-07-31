@@ -30,9 +30,10 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "test": "node ./out/test/index.js",
+    "test": "vscode-test",
     "clean": "rm -rf out",
-    "deep-clean": "rm -rf out node_modules"
+    "deep-clean": "rm -rf out node_modules",
+    "restart": "npm run deep-clean && npm install"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.7",
