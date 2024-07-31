@@ -2,5 +2,8 @@ import { defineConfig } from '@vscode/test-cli';
 
 export default defineConfig({
 	files: 'out/test/**/*.test.js',
-	framework: 'mocha',
+	mocha: {
+		ui: 'bdd',
+		timeout: 10000,
+	},
 });
