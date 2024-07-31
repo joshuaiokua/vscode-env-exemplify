@@ -9,11 +9,6 @@ async function main() {
     // Pointing to the test runner script
     const extensionTestsPath = path.resolve(__dirname, "./suite/index");
 
-    console.log("*--- PATHS SET ---*");
-    console.log(
-      `Extension development path: ${extensionDevelopmentPath}\nExtension tests path: ${extensionTestsPath}`,
-    );
-
     await runTests({ extensionDevelopmentPath, extensionTestsPath });
   } catch (err) {
     console.error("Failed to run tests", err);
