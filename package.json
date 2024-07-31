@@ -3,6 +3,7 @@
   "displayName": "Environment Exemplify",
   "description": "",
   "version": "0.0.1",
+  "publisher": "yell-zero",
   "engines": {
     "vscode": "^1.91.0"
   },
@@ -10,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:.env"
+    "workspaceContains:.env",
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -39,16 +41,17 @@
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.11.0",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0",
+    "@vscode/test-electron": "^2.4.1",
+    "chai": "^4.3.4",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
-    "prettier": "^3.3.2",
-    "typescript": "^5.5.3",
+    "glob": "11.0.0",
     "mocha": "^10.0.7",
-    "chai": "^4.3.4",
+    "prettier": "^3.3.2",
     "sinon": "^9.2.4",
+    "source-map-support": "^0.5.19",
     "ts-node": "^10.0.0",
-    "source-map-support": "^0.5.19"
+    "typescript": "^5.5.3"
   }
 }
