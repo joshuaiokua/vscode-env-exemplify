@@ -34,6 +34,7 @@ export const updateEnvExample = async (filePath: string) => {
 // Delete Functionality
 export const deleteEnvExample = async (filePath: string) => {
   const envExamplePath = getEnvExamplePath(filePath);
+  console.log(`Deleting env.example file: ${envExamplePath}`);
 
   try {
     await fs.unlink(envExamplePath);
