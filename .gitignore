@@ -27,6 +27,9 @@ dist/
 temp/
 tmp/
 
+# Testing
+.vscode-test/
+
 # Package files
 package-lock.json
 .DS_Store
