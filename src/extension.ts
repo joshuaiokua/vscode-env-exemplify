@@ -41,9 +41,12 @@ export const deleteEnvExample = async (filePath: string) => {
     vscode.window.showInformationMessage(
       "env.example file deleted successfully",
     );
-  } catch (err) {
-    console.error("Error deleting env.example file:", err);
-    vscode.window.showErrorMessage("Failed to delete env.example file");
+  } catch (err: any) {
+    // Ignore error if the file does not exist
+    if (err.code !== "ENOENT") {
+      console.error("Error deleting env.example file:", err);
+      vscode.window.showErrorMessage("Failed to delete env.example file");
+    }
   }
 };
 
