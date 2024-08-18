@@ -51,7 +51,7 @@ export const deleteEnvExample = async (filePath: string) => {
 };
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "env-exemplify" is now active!');
+  console.log("env-exemplify extension activated");
 
   // Watch for changes in the .env file
   const watcher = vscode.workspace.createFileSystemWatcher("**/.env");
